@@ -5,7 +5,7 @@ This is a PowerShell module for working with the Atlassian Stash REST API.
 
 This is an quick and dirty implementation based on my environment's configuration, with limited functionality.  Contributions to improve this would be more than welcome!
 
-Chances are high that there will be breaking design changes, is just a simple POC.
+Chances are high that there will be breaking design changes, this is just a simple POC.
 
 ### Examples:
 
