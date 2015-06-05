@@ -49,6 +49,20 @@ Query for arbitrary objects:
 # List repositories under the 'sysinv' project
     Get-StashObject -Object projects/sysinv/repos -Credential $cred
 
+# Create, change, and delete objects; for example, projects
+    New-StashObject -Object projects -Credential $Cred -Body @{
+        key = "TSTPRJ"
+        name = "Test Project"
+        description = "A Project To Delete"
+        avatar = "data:image/png;base64,$Base64EncodedImage"
+    }
+
+    Set-StashObject -Object projects/TSTPRJ -Credential $cred -Body @{ description = "MODIFIED DESCRIPTION!" } -Force
+
+    Remove-StashObject -Object projects/TSTPRJ -Credential $Cred -Force
+
+# Change a project
+
 ```
 
 ### References:
@@ -58,4 +72,4 @@ Query for arbitrary objects:
 
 ### TODO:
 
-Everything. This is in the 'can I get it working' state. Need to identify requirements (e.g. which objects to create functions for, further parameters, whether to pursue OAUTH) for further work.
+Everything. This is in the 'can I get it working' state. Need to identify requirements (e.g. which specific objects to create functions for, parameters for these objects, whether to pursue OAUTH) for further work.
