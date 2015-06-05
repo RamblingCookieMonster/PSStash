@@ -7,7 +7,18 @@
         Get Stash Projects
 
     .PARAMETER Key
-        Project Key
+        Search for project by Key
+
+    .PARAMETER Name
+        Search for project by Name
+
+    .PARAMETER Permission
+        Search for project by your permission to it.
+
+        Valid permissions:
+            PROJECT_ADMIN
+            PROJECT_WRITE
+            PROJECT_READ
 
     .PARAMETER Uri
         The base Uri for Stash.  Defaults to $StashConfig.Uri
@@ -32,11 +43,24 @@
         # Authenticates with $Cred
         # Uses the URI from Get-StashConfig/Set-StashConfig
 
+    .EXAMPLE
+        Get-StashProject -Permission PROJECT_ADMIN -Credential $Cred
+
+        # Get Stash projects where $Cred has PROJECT_ADMIN permissions
+        # Uses the URI from Get-StashConfig/Set-StashConfig
+
+
     .FUNCTIONALITY
         Stash
     #>
-    [cmdletbinding()]
-    param(    
+    [cmdletbinding(DefaultParameterSetName = 'Name')]
+    param(
+        [parameter(ParameterSetName = 'Name')]
+        [string]$Name,
+        [parameter(ParameterSetName = 'Name')]
+        [validateset('PROJECT_READ','PROJECT_WRITE','PROJECT_ADMIN')]
+        [string]$Permission,
+        [parameter(ParameterSetName = 'Key')]
         [string]$Key,
         [string]$Uri = $Script:StashConfig.Uri,
         [System.Management.Automation.PSCredential]$Credential,
@@ -53,11 +77,28 @@
             Uri = $BaseUri
             Method = 'Get'
         }
-        if($PSBoundParameters.ContainsKey('Credential'))
-        {
-            $IRMParams.Add( 'Headers', @{ Authorization = (Get-AuthString -Credential $Credential) } )
-        }
 
+        $Body = @{}
+        switch($PSBoundParameters.Keys)
+        {
+            'Credential'
+            {
+                $IRMParams.Add( 'Headers', @{ Authorization = (Get-AuthString -Credential $Credential) } )
+            }
+            'Name' 
+            {
+                $Body.Add( 'name', $Name)
+            }
+            'Permission'
+            {
+                $Body.Add( 'permission', $Permission)
+            }
+        }
+        if($Body.keys.count -gt 0)
+        {
+            $IRMParams.Add( 'Body', $Body )
+        }
+        
         $GSDParams = @{ IRMParams = $IRMParams }
         if($PSBoundParameters.ContainsKey('Raw'))
         {

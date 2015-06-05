@@ -13,13 +13,17 @@
     {
         if($NextPageID -notlike "NotStarted")
         {
-            #What if there is CGI already?
-            $IRMParams.Uri = $Uri, "start=$NextPageID" -join "?"
+            if(-not $IRMParams.containskey('Body'))
+            {
+                $IRMParams.Add( 'Body', @{} )
+            }
+            $IRMParams.Body.start = $NextPageID
         }
 
         Try
         {
             $Err = $null
+            write-debug "Final $($IRMParams | Out-string)"
             $TempResult = Invoke-RestMethod @IRMParams -ErrorVariable Err
             Write-Debug "Raw:`n$($TempResult | Out-String)"
         }
@@ -35,7 +39,7 @@
         {
             $TempResult
         }
-        elseif($TempResult.Values)
+        elseif($TempResult.PSObject.Properties.Name -contains 'values')
         {
             $TempResult.Values
         }

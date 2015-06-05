@@ -16,6 +16,14 @@
         
         Example: "https://Stash.contoso.com:8443"
 
+    .PARAMETER Body
+        Hash table with query options for specific object
+
+        IMPORTANT: These are case sensitive
+
+        Example for projects:
+            -Body @{ name = 'nameofproject' }
+
     .PARAMETER Raw
         If specified, do not extract the 'Values' attribute of the results.
 
@@ -39,6 +47,16 @@
 
         # List public projects on Stash at http://stash.contoso.com
 
+    .EXAMPLE
+        Get-StashObject -Object repos -body @{name='r'} -Credential $cred
+
+        # Find repositories that start with the letter r
+
+    .EXAMPLE
+        Get-StashObject -Object groups -body @{filter='stash'} -Credential $cred
+
+        # Find groups with the string 'stash' in their name
+
     .FUNCTIONALITY
         Stash
     #>
@@ -47,6 +65,7 @@
         [string]$Object = "projects",
         [string]$Uri = $Script:StashConfig.Uri,
         [System.Management.Automation.PSCredential]$Credential,
+        [Hashtable]$Body,
         [switch]$Raw
     )
 
@@ -63,6 +82,10 @@
         if($PSBoundParameters.ContainsKey('Credential'))
         {
             $IRMParams.Add( 'Headers', @{ Authorization = (Get-StashAuthString -Credential $Credential) } )
+        }
+        if($PSBoundParameters.ContainsKey('Body'))
+        {
+            $IRMParams.Add( 'Body', $Body ) 
         }
 
         $GSDParams = @{ IRMParams = $IRMParams }
