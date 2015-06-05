@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/pq7kyu84crviig2q/branch/master?svg)](https://ci.appveyor.com/project/RamblingCookieMonster/psstash)
+[![Build status](https://ci.appveyor.com/api/projects/status/pq7kyu84crviig2q/branch/master?svg=true)](https://ci.appveyor.com/project/RamblingCookieMonster/psstash)
 
 Stash PowerShell Module
 =============
