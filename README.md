@@ -61,7 +61,11 @@ Query for arbitrary objects:
 
     Remove-StashObject -Object projects/TSTPRJ -Credential $Cred -Force
 
-# Change a project
+# Fork a repository into my personal project (Commands like this will be broken out into independent functions at some point):
+    New-StashObject -Object projects/PROJECTKEY/repos/REPOSITORYSLUG -Credential $Cred -body @{name=$null}
+
+# View repositories in my personal project:
+    Get-StashObject -Object projects/~MYUSERNAME/repos -Credential $Cred
 
 ```
 
