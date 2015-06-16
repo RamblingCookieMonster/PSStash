@@ -94,4 +94,3 @@ Potential functions:
 * [ ] Merge-StashPullRequest
 * [ ] Add-StashPullRequestComment
 * [ ] Deny-StashPullRequest
-* ...
