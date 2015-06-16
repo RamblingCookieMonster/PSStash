@@ -76,4 +76,22 @@ Query for arbitrary objects:
 
 ### TODO:
 
-Everything. This is in the 'can I get it working' state. Need to identify requirements (e.g. which specific objects to create functions for, parameters for these objects, whether to pursue OAUTH) for further work.
+Everything. This is in the 'can I get it working' state. Need to identify requirements (e.g. which specific objects to create functions for, parameters for these objects, whether to pursue OAUTH) for further work, write functions, tests, etc.
+
+Potential functions:
+
+* --Get-StashProject--
+* --Get-StashRepo--
+* --New-StashFork--
+* New-StashProject
+* New-StashRepo
+* Remove-StashRepo
+* Get-StashRepoPermission
+* Set-StashRepoPermission
+* Add-StashRepoPermission
+* Remove-StashRepoPermission
+* Get-StashCommit
+* Merge-StashPullRequest
+* Add-StashPullRequestComment
+* Deny-StashPullRequest
+* ...
