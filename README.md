@@ -80,18 +80,18 @@ Everything. This is in the 'can I get it working' state. Need to identify requir
 
 Potential functions:
 
-* --Get-StashProject--
-* --Get-StashRepo--
-* --New-StashFork--
-* New-StashProject
-* New-StashRepo
-* Remove-StashRepo
-* Get-StashRepoPermission
-* Set-StashRepoPermission
-* Add-StashRepoPermission
-* Remove-StashRepoPermission
-* Get-StashCommit
-* Merge-StashPullRequest
-* Add-StashPullRequestComment
-* Deny-StashPullRequest
+* [x] Get-StashProject
+* [x] Get-StashRepo
+* [x] New-StashFork
+* [ ] New-StashProject
+* [ ] New-StashRepo
+* [ ] Remove-StashRepo
+* [ ] Get-StashRepoPermission
+* [ ] Set-StashRepoPermission
+* [ ] Add-StashRepoPermission
+* [ ] Remove-StashRepoPermission
+* [ ] Get-StashCommit
+* [ ] Merge-StashPullRequest
+* [ ] Add-StashPullRequestComment
+* [ ] Deny-StashPullRequest
 * ...
