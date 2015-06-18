@@ -134,7 +134,19 @@
     Try
     {
         #Get the data from Stash
-        Get-StashData @GSDParams
+        Get-StashData @GSDParams | Foreach-Object {
+            
+            #Custom types and display stuff
+            if($_.PSObject.Properties.Name -contains 'slug')
+            {
+                Add-TypeDetail -InputObject $_ -TypeName 'PSStash.Repo'
+            }
+            else
+            {
+                $_
+            }
+
+        }
     }
     Catch
     {
