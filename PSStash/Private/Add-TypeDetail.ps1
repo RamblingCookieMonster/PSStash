@@ -10,6 +10,8 @@ function Add-TypeDetail
            [ValidateNotNullOrEmpty()]
            [psobject[]]$InputObject,
            
+           [System.Collections.Hashtable]$Properties,
+
            [Parameter( Mandatory = $false,
                        Position=1)]
            [string]$TypeName,
@@ -35,6 +37,15 @@ function Add-TypeDetail
     {
         foreach($object in $InputObject)
         {
+
+            if($PSBoundParameters.ContainsKey('Properties'))
+            {
+                foreach($Key in $Properties.Keys)
+                {
+                    #Add specified type
+                    $Object.PSObject.Properties.Add( ( New-Object PSNoteProperty($Key, $Properties.$Key) ) )   
+                }
+            }
             
             if($PSBoundParameters.ContainsKey('TypeName'))
             {
