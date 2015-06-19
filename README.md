@@ -13,11 +13,23 @@ Chances are high that there will be breaking design changes, this is just a simp
 
 Query for projects:
 
-![Public projects](/Media/PublicProjects.png)
+[![Public projects](/Media/Get-StashProject.png)](/Media/Get-StashProject.png)
+
+Query for repositories:
+
+[![Public projects](/Media/Get-StashRepo.png)](/Media/Get-StashRepo.png)
+
+Query for project permissions:
+
+[![Public projects](/Media/Get-StashProjectUserPermission.png)](/Media/Get-StashProjectUserPermission.png)
+
+[![Public projects](/Media/Get-StashProjectGroupPermission.png)](/Media/Get-StashProjectGroupPermission.png)
 
 Query for arbitrary objects:
 
 ![Objects](/Media/repos.png)
+
+
 
 ### Instructions:
 
@@ -61,11 +73,15 @@ Query for arbitrary objects:
 
     Remove-StashObject -Object projects/TSTPRJ -Credential $Cred -Force
 
-# Fork a repository into my personal project (Commands like this will be broken out into independent functions at some point):
-    New-StashObject -Object projects/PROJECTKEY/repos/REPOSITORYSLUG -Credential $Cred -body @{name=$null}
+# Fork a repository into my personal project:
+    New-StashFork -Credential $cred -Project SYSINV -Repo SystemsInventory
 
 # View repositories in my personal project:
     Get-StashObject -Object projects/~MYUSERNAME/repos -Credential $Cred
+
+# Get project user and group permissions
+    Get-StashProject | Get-StashProjectUserPermission -Cred $Cred
+    Get-StashProject | Get-StashProjectGroupPermission -Cred $Cred
 
 ```
 
@@ -83,9 +99,14 @@ Potential functions:
 * [x] Get-StashProject
 * [x] Get-StashRepo
 * [x] New-StashFork
+* [x] Get-StashProjectUserPermission
+* [x] Get-StashProjectGroupPermission
 * [ ] New-StashProject
 * [ ] New-StashRepo
 * [ ] Remove-StashRepo
+* [ ] Get-StashProjectPermission
+* [ ] Set-StashProjectPermission
+* [ ] Add-StashProjectPermission
 * [ ] Get-StashRepoPermission
 * [ ] Set-StashRepoPermission
 * [ ] Add-StashRepoPermission
