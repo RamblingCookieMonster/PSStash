@@ -3,7 +3,8 @@
     [cmdletbinding()]
     param (
         $IRMParams,
-        [switch]$Raw
+        [switch]$Raw,
+        $UseIWR
     )
     
     $Uri = $IRMParams.Uri
@@ -24,7 +25,16 @@
         {
             $Err = $null
             write-debug "Final $($IRMParams | Out-string)"
-            $TempResult = Invoke-RestMethod @IRMParams -ErrorVariable Err
+            
+            #We might want to track the HTTP status code to verify success for non-gets...
+            if($UseIWR)
+            {   
+                $TempResult = Invoke-WebRequest @IRMParams
+            }
+            else
+            {
+                $TempResult = Invoke-RestMethod @IRMParams -ErrorVariable Err
+            }
             Write-Debug "Raw:`n$($TempResult | Out-String)"
         }
         Catch
