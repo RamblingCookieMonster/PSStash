@@ -112,7 +112,7 @@
                     if($_.PSObject.Properties.Name -contains 'group')
                     {
                         #Add some props and a type
-                        Add-TypeDetail -InputObject $_ -TypeName 'PSStash.Project.GroupPermission' -Properties @{
+                        Add-ObjectDetail -InputObject $_ -TypeName 'PSStash.Project.GroupPermission' -Properties @{
                             ProjectKey =$ProjectKey
                             Name = $_.group.name
                         }

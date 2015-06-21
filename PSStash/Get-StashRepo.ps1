@@ -139,7 +139,7 @@
             #Custom types and display stuff
             if($_.PSObject.Properties.Name -contains 'slug')
             {
-                Add-TypeDetail -InputObject $_ -TypeName 'PSStash.Repo'
+                Add-ObjectDetail -InputObject $_ -TypeName 'PSStash.Repo'
             }
             else
             {

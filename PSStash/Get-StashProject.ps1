@@ -118,7 +118,7 @@
             #Custom types and display stuff
             if($_.PSObject.Properties.Name -contains 'key')
             {
-                Add-TypeDetail -InputObject $_ -TypeName 'PSStash.Project'
+                Add-ObjectDetail -InputObject $_ -TypeName 'PSStash.Project'
             }
             else
             {
