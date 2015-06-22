@@ -36,6 +36,9 @@
     .PARAMETER DefaultProperties
         Change the default properties that show up
 
+    .PARAMETER Passthru
+        Whether to pass the resulting object on. Defaults to true
+
     .EXAMPLE
         #
         # Create an object to work with
@@ -113,7 +116,9 @@
                        Position=3)]
            [ValidateNotNullOrEmpty()]
            [Alias('dp')]
-           [System.String[]]$DefaultProperties
+           [System.String[]]$DefaultProperties,
+
+           [boolean]$Passthru = $True
     )
     
     Begin
@@ -127,7 +132,7 @@
     }
     Process
     {
-        foreach($object in $InputObject)
+        foreach($Object in $InputObject)
         {
             switch ($PSBoundParameters.Keys)
             {
@@ -142,7 +147,7 @@
                 'TypeName'
                 {
                     #Add specified type
-                    [void]$object.PSObject.TypeNames.Insert(0,$TypeName)
+                    [void]$Object.PSObject.TypeNames.Insert(0,$TypeName)
                 }
                 'DefaultProperties'
                 {
@@ -150,7 +155,10 @@
                     Add-Member -InputObject $Object -MemberType MemberSet -Name PSStandardMembers -Value $PSStandardMembers
                 }
             }
-            $object
+            if($Passthru)
+            {
+                $Object
+            }
         }
     }
 }
