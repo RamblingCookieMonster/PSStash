@@ -11,7 +11,7 @@
         }
         Catch
         {
-            Write-Error "Failed to import function $($import.fullname)"
+            Write-Error "Failed to import function $($import.fullname): $_"
         }
     }
 
