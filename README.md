@@ -115,3 +115,5 @@ Potential functions:
 * [ ] Merge-StashPullRequest
 * [ ] Add-StashPullRequestComment
 * [ ] Deny-StashPullRequest
+
+Project Status, 1/17/2016: I no longer work with or have access to Stash / BitBucket Server. Feel free to fork this or use it as needed, but there will likely be no further development, barring external contributions.
